@@ -2,7 +2,7 @@
 title: "Punto 5 - Taller 1"
 output: html_notebook
 ---
-#### Punto 4
+#### Punto 5
 
 Definicion de las variables
 
@@ -14,59 +14,163 @@ Renta <- c( 30, 30, 22, 23, 19, 20, 15, 14, 11, 12)
 
 ```
 
-#### Calculo de la covarianza
-
-```{r}
-
-tabla <- cbind(Porporción, Renta);datos
-
-```
-
-
-promedios de x y y
-```{r}
-
-promedios <- colMeans(tabla);promedios
-
-
-```
-
-x*y
-
-```{r}
-
-tabla <- cbind(tabla, tabla[,1]*tabla[,2])
-colnames(tabla)[3] <- "x*y"
-tabla
-```
-
-
-Multiplicacion de pronedios (x'*y')
-```{r}
-
-prom_xy = promedios[1]*promedios[2];xy
-
-```
-x*y - x'y'
-
-```{r}
-
-tabla <- cbind(tabla, tabla[,3]-prom_xy)
-colnames(tabla)[4] <- "(x*y - x'y')"
-tabla
-```
-```{r}
-covarianza <- (sum(tabla[,4])/nrow(tabla))
-```
-
+Funcion del calculo de la covarianza Poblacional
 
 ```{r}
 
 covarianzaPoblacional <- function(x,y){
   
+  # contruccion de la tabla
+  
   tabla <- cbind(x, y);
+  
+  # Promedios de la tabla
+  promedios <- colMeans(tabla);
+  
+  # x*y
+  
+  tabla <- cbind(tabla, tabla[,1]*tabla[,2])
+  colnames(tabla)[3] <- "x*y"
+  
+  #x'y'
+  
+  prom_xy <- promedios[1]*promedios[2]
+  tabla <- cbind(tabla, tabla[,3]-prom_xy)
+  
+  #(x*y - x'y')
+  
+  colnames(tabla)[4] <- "(x*y - x'y')"
+  
+  # covarianza
+  covarianza <- (sum(tabla[,4])/nrow(tabla))
+  
+  # Datos de retorno
+  
+  lista <- list(covarianza, tabla)
+  names(lista) <- c("Sxy","tablaCovarianza")
+  
+  return (lista)
   
 }
 
 ```
 
+```{r}
+
+covarianza <- covarianzaPoblacional(Porporción, Renta);covarianza
+
+```
+
+Funcion del calculo de la Correlacion Poblacional
+
+
+```{r}
+
+correlacionPoblacional<- function(x,y,sxy){
+  
+  # Construccion de Tabla
+  
+  tabla <- cbind(x,y)
+  
+  # Desviacion estandar de x
+  
+  sx <- (x-mean(x))^2
+  tabla <- cbind(tabla, sx)
+  sx <- sqrt(sum(sx)/nrow(tabla))
+  
+  # Desviacion estandar de y
+  
+  sy <- (y-mean(y))^2
+  tabla <- cbind(tabla, sy)
+  sy <- sqrt(sum(sy)/nrow(tabla))
+  
+ 
+  # Correlacion 
+  
+  correlacion <- as.double(sxy)/(sx*sy)
+  
+  # Datos de retorno
+  
+  lista <- list(sx,sy,correlacion, tabla)
+  
+  names(lista) <- c("Sx","Sy","cor","tablaCorrelaciones")
+  
+  return(lista)
+  
+  
+}
+```
+
+
+```{r}
+
+correlacion <- correlacionPoblacional(Porporción,Renta, covarianza[1]);correlacion
+
+```
+Funcion del calculo del Coeficiente de  spearman
+
+```{r}
+
+spearman <- function(x,y){
+  
+ 
+  
+  # R(x)
+  
+  Rx <- order(x)
+  tabla <- cbind(x,Rx)
+  
+  # Construction de la tabla
+  
+  tabla <- cbind( tabla , y)
+  
+  #R(y)
+  
+  Ry <- order(y)
+  tabla <- cbind(tabla, Ry)
+  
+  # d
+  
+  d <- Rx - Ry
+  tabla <- cbind(tabla, d)
+  
+  # d2
+  
+  d2 <- d^2
+  tabla <- cbind(tabla,d2)
+  
+
+  # R
+  
+  n <- nrow(tabla)
+  R <- n *((n^2)-1)
+  R <- (6*sum(d2))/R
+  R <- 1 - R
+  
+  
+  # Valores de retorno
+  
+  lista <- list(R, tabla)
+  names(lista) <- c("R", "TablaSpearman")
+  
+  
+  return(lista)
+  
+}
+
+```
+
+```{r}
+coeficienteSpearman <- spearman(Porporción, Renta);coeficienteSpearman
+
+```
+Porporcion vs Renta
+
+```{r}
+
+plot(Porporción,Renta, main=" Porporción vs Renta")
+abline(lm(Renta ~ Porporción), col="blue")
+
+```
+ 
+ 

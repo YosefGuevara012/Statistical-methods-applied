@@ -1797,8 +1797,8 @@ summary {
 
 
 <!-- rnb-text-begin -->
-<div id="punto-4" class="section level4">
-<h4>Punto 4</h4>
+<div id="punto-5" class="section level4">
+<h4>Punto 5</h4>
 <p>Definicion de las variables</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -1811,116 +1811,43 @@ Renta &lt;- c( 30, 30, 22, 23, 19, 20, 15, 14, 11, 12)
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
-<div id="calculo-de-la-covarianza" class="section level4">
-<h4>Calculo de la covarianza</h4>
+<p>Funcion del calculo de la covarianza Poblacional</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG50YWJsYSA8LSBjYmluZChQb3Jwb3JjacOzbiwgUmVudGEpO2RhdG9zXG5gYGAifQ== -->
-<pre class="r"><code>
-tabla &lt;- cbind(Porporción, Renta);datos</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgUG9ycG9yY2nDs24gUmVudGFcbiBbMSxdICAgICAgICAgMjIgICAgMzBcbiBbMixdICAgICAgICAgMjQgICAgMzBcbiBbMyxdICAgICAgICAgMjUgICAgMjJcbiBbNCxdICAgICAgICAgMjggICAgMjNcbiBbNSxdICAgICAgICAgMzAgICAgMTlcbiBbNixdICAgICAgICAgMzMgICAgMjBcbiBbNyxdICAgICAgICAgMzcgICAgMTVcbiBbOCxdICAgICAgICAgNDAgICAgMTRcbiBbOSxdICAgICAgICAgNDIgICAgMTFcblsxMCxdICAgICAgICAgNDIgICAgMTJcbiJ9 -->
-<pre><code>      Porporción Renta
- [1,]         22    30
- [2,]         24    30
- [3,]         25    22
- [4,]         28    23
- [5,]         30    19
- [6,]         33    20
- [7,]         37    15
- [8,]         40    14
- [9,]         42    11
-[10,]         42    12</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>promedios de x y y</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5wcm9tZWRpb3MgPC0gY29sTWVhbnModGFibGEpO3Byb21lZGlvc1xuYGBgIn0= -->
-<pre class="r"><code>
-promedios &lt;- colMeans(tabla);promedios</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUG9ycG9yY2nDs24gICAgICBSZW50YSBcbiAgICAgIDMyLjMgICAgICAgMTkuNiBcbiJ9 -->
-<pre><code>Porporción      Renta 
-      32.3       19.6 </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>x*y</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG50YWJsYSA8LSBjYmluZCh0YWJsYSwgdGFibGFbLDFdKnRhYmxhWywyXSlcbmNvbG5hbWVzKHRhYmxhKVszXSA8LSBcIngqeVwiXG50YWJsYVxuYGBgIn0= -->
-<pre class="r"><code>
-tabla &lt;- cbind(tabla, tabla[,1]*tabla[,2])
-colnames(tabla)[3] &lt;- &quot;x*y&quot;
-tabla</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgUG9ycG9yY2nDs24gUmVudGEgeCp5XG4gWzEsXSAgICAgICAgIDIyICAgIDMwIDY2MFxuIFsyLF0gICAgICAgICAyNCAgICAzMCA3MjBcbiBbMyxdICAgICAgICAgMjUgICAgMjIgNTUwXG4gWzQsXSAgICAgICAgIDI4ICAgIDIzIDY0NFxuIFs1LF0gICAgICAgICAzMCAgICAxOSA1NzBcbiBbNixdICAgICAgICAgMzMgICAgMjAgNjYwXG4gWzcsXSAgICAgICAgIDM3ICAgIDE1IDU1NVxuIFs4LF0gICAgICAgICA0MCAgICAxNCA1NjBcbiBbOSxdICAgICAgICAgNDIgICAgMTEgNDYyXG5bMTAsXSAgICAgICAgIDQyICAgIDEyIDUwNFxuIn0= -->
-<pre><code>      Porporción Renta x*y
- [1,]         22    30 660
- [2,]         24    30 720
- [3,]         25    22 550
- [4,]         28    23 644
- [5,]         30    19 570
- [6,]         33    20 660
- [7,]         37    15 555
- [8,]         40    14 560
- [9,]         42    11 462
-[10,]         42    12 504</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Multiplicacion de pronedios (x’*y’)</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5wcm9tX3h5ID0gcHJvbWVkaW9zWzFdKnByb21lZGlvc1syXTt4eVxuYGBgIn0= -->
-<pre class="r"><code>
-prom_xy = promedios[1]*promedios[2];xy</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUG9ycG9yY2nDs24gXG4gICAgNjMzLjA4IFxuIn0= -->
-<pre><code>Porporción 
-    633.08 </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>x*y - x’y’</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG50YWJsYSA8LSBjYmluZCh0YWJsYSwgdGFibGFbLDNdLXByb21feHkpXG5jb2xuYW1lcyh0YWJsYSlbNF0gPC0gXCIoeCp5IC0geCd5JylcIlxudGFibGFcbmBgYCJ9 -->
-<pre class="r"><code>
-tabla &lt;- cbind(tabla, tabla[,3]-prom_xy)
-colnames(tabla)[4] &lt;- &quot;(x*y - x&#39;y&#39;)&quot;
-tabla</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgUG9ycG9yY2nDs24gUmVudGEgeCp5ICh4KnkgLSB4J3knKSAgICAgICAgXG4gWzEsXSAgICAgICAgIDIyICAgIDMwIDY2MCAgICAgICAgMjYuOTIgICAyNi45MlxuIFsyLF0gICAgICAgICAyNCAgICAzMCA3MjAgICAgICAgIDg2LjkyICAgODYuOTJcbiBbMyxdICAgICAgICAgMjUgICAgMjIgNTUwICAgICAgIC04My4wOCAgLTgzLjA4XG4gWzQsXSAgICAgICAgIDI4ICAgIDIzIDY0NCAgICAgICAgMTAuOTIgICAxMC45MlxuIFs1LF0gICAgICAgICAzMCAgICAxOSA1NzAgICAgICAgLTYzLjA4ICAtNjMuMDhcbiBbNixdICAgICAgICAgMzMgICAgMjAgNjYwICAgICAgICAyNi45MiAgIDI2LjkyXG4gWzcsXSAgICAgICAgIDM3ICAgIDE1IDU1NSAgICAgICAtNzguMDggIC03OC4wOFxuIFs4LF0gICAgICAgICA0MCAgICAxNCA1NjAgICAgICAgLTczLjA4ICAtNzMuMDhcbiBbOSxdICAgICAgICAgNDIgICAgMTEgNDYyICAgICAgLTE3MS4wOCAtMTcxLjA4XG5bMTAsXSAgICAgICAgIDQyICAgIDEyIDUwNCAgICAgIC0xMjkuMDggLTEyOS4wOFxuIn0= -->
-<pre><code>      Porporción Renta x*y (x*y - x&#39;y&#39;)        
- [1,]         22    30 660        26.92   26.92
- [2,]         24    30 720        86.92   86.92
- [3,]         25    22 550       -83.08  -83.08
- [4,]         28    23 644        10.92   10.92
- [5,]         30    19 570       -63.08  -63.08
- [6,]         33    20 660        26.92   26.92
- [7,]         37    15 555       -78.08  -78.08
- [8,]         40    14 560       -73.08  -73.08
- [9,]         42    11 462      -171.08 -171.08
-[10,]         42    12 504      -129.08 -129.08</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY292YXJpYW56YSA8LSAoc3VtKHRhYmxhWyw0XSkvbnJvdyh0YWJsYSkpXG5gYGAifQ== -->
-<pre class="r"><code>covarianza &lt;- (sum(tabla[,4])/nrow(tabla))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5jb3ZhcmlhbnphUG9ibGFjaW9uYWwgPC0gZnVuY3Rpb24oeCx5KXtcbiAgXG4gIHRhYmxhIDwtIGNiaW5kKHgsIHkpO1xuICBcbn1cblxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5jb3ZhcmlhbnphUG9ibGFjaW9uYWwgPC0gZnVuY3Rpb24oeCx5KXtcbiAgXG4gICMgY29udHJ1Y2Npb24gZGUgbGEgdGFibGFcbiAgXG4gIHRhYmxhIDwtIGNiaW5kKHgsIHkpO1xuICBcbiAgIyBQcm9tZWRpb3MgZGUgbGEgdGFibGFcbiAgcHJvbWVkaW9zIDwtIGNvbE1lYW5zKHRhYmxhKTtcbiAgXG4gICMgeCp5XG4gIFxuICB0YWJsYSA8LSBjYmluZCh0YWJsYSwgdGFibGFbLDFdKnRhYmxhWywyXSlcbiAgY29sbmFtZXModGFibGEpWzNdIDwtIFwieCp5XCJcbiAgXG4gICN4J3knXG4gIFxuICBwcm9tX3h5IDwtIHByb21lZGlvc1sxXSpwcm9tZWRpb3NbMl1cbiAgdGFibGEgPC0gY2JpbmQodGFibGEsIHRhYmxhWywzXS1wcm9tX3h5KVxuICBcbiAgIyh4KnkgLSB4J3knKVxuICBcbiAgY29sbmFtZXModGFibGEpWzRdIDwtIFwiKHgqeSAtIHgneScpXCJcbiAgXG4gICMgY292YXJpYW56YVxuICBjb3ZhcmlhbnphIDwtIChzdW0odGFibGFbLDRdKS9ucm93KHRhYmxhKSlcbiAgXG4gICMgRGF0b3MgZGUgcmV0b3Jub1xuICBcbiAgbGlzdGEgPC0gbGlzdChjb3ZhcmlhbnphLCB0YWJsYSlcbiAgbmFtZXMobGlzdGEpIDwtIGMoXCJTeHlcIixcInRhYmxhQ292YXJpYW56YVwiKVxuICBcbiAgcmV0dXJuIChsaXN0YSlcbiAgXG59XG5cbmBgYCJ9 -->
 <pre class="r"><code>
 covarianzaPoblacional &lt;- function(x,y){
   
+  # contruccion de la tabla
+  
   tabla &lt;- cbind(x, y);
+  
+  # Promedios de la tabla
+  promedios &lt;- colMeans(tabla);
+  
+  # x*y
+  
+  tabla &lt;- cbind(tabla, tabla[,1]*tabla[,2])
+  colnames(tabla)[3] &lt;- &quot;x*y&quot;
+  
+  #x&#39;y&#39;
+  
+  prom_xy &lt;- promedios[1]*promedios[2]
+  tabla &lt;- cbind(tabla, tabla[,3]-prom_xy)
+  
+  #(x*y - x&#39;y&#39;)
+  
+  colnames(tabla)[4] &lt;- &quot;(x*y - x&#39;y&#39;)&quot;
+  
+  # covarianza
+  covarianza &lt;- (sum(tabla[,4])/nrow(tabla))
+  
+  # Datos de retorno
+  
+  lista &lt;- list(covarianza, tabla)
+  names(lista) &lt;- c(&quot;Sxy&quot;,&quot;tablaCovarianza&quot;)
+  
+  return (lista)
   
 }
 </code></pre>
@@ -1928,9 +1855,199 @@ covarianzaPoblacional &lt;- function(x,y){
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5jb3ZhcmlhbnphIDwtIGNvdmFyaWFuemFQb2JsYWNpb25hbChQb3Jwb3JjacOzbiwgUmVudGEpO2NvdmFyaWFuemFcbmBgYCJ9 -->
+<pre class="r"><code>
+covarianza &lt;- covarianzaPoblacional(Porporción, Renta);covarianza</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJFN4eVxuWzFdIC00NC41OFxuXG4kdGFibGFDb3ZhcmlhbnphXG4gICAgICAgeCAgeSB4KnkgKHgqeSAtIHgneScpXG4gWzEsXSAyMiAzMCA2NjAgICAgICAgIDI2LjkyXG4gWzIsXSAyNCAzMCA3MjAgICAgICAgIDg2LjkyXG4gWzMsXSAyNSAyMiA1NTAgICAgICAgLTgzLjA4XG4gWzQsXSAyOCAyMyA2NDQgICAgICAgIDEwLjkyXG4gWzUsXSAzMCAxOSA1NzAgICAgICAgLTYzLjA4XG4gWzYsXSAzMyAyMCA2NjAgICAgICAgIDI2LjkyXG4gWzcsXSAzNyAxNSA1NTUgICAgICAgLTc4LjA4XG4gWzgsXSA0MCAxNCA1NjAgICAgICAgLTczLjA4XG4gWzksXSA0MiAxMSA0NjIgICAgICAtMTcxLjA4XG5bMTAsXSA0MiAxMiA1MDQgICAgICAtMTI5LjA4XG4ifQ== -->
+<pre><code>$Sxy
+[1] -44.58
+
+$tablaCovarianza
+       x  y x*y (x*y - x&#39;y&#39;)
+ [1,] 22 30 660        26.92
+ [2,] 24 30 720        86.92
+ [3,] 25 22 550       -83.08
+ [4,] 28 23 644        10.92
+ [5,] 30 19 570       -63.08
+ [6,] 33 20 660        26.92
+ [7,] 37 15 555       -78.08
+ [8,] 40 14 560       -73.08
+ [9,] 42 11 462      -171.08
+[10,] 42 12 504      -129.08</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Funcion del calculo de la Correlacion Poblacional</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5jb3JyZWxhY2lvblBvYmxhY2lvbmFsPC0gZnVuY3Rpb24oeCx5LHN4eSl7XG4gIFxuICAjIENvbnN0cnVjY2lvbiBkZSBUYWJsYVxuICBcbiAgdGFibGEgPC0gY2JpbmQoeCx5KVxuICBcbiAgIyBEZXN2aWFjaW9uIGVzdGFuZGFyIGRlIHhcbiAgXG4gIHN4IDwtICh4LW1lYW4oeCkpXjJcbiAgdGFibGEgPC0gY2JpbmQodGFibGEsIHN4KVxuICBzeCA8LSBzcXJ0KHN1bShzeCkvbnJvdyh0YWJsYSkpXG4gIFxuICAjIERlc3ZpYWNpb24gZXN0YW5kYXIgZGUgeVxuICBcbiAgc3kgPC0gKHktbWVhbih5KSleMlxuICB0YWJsYSA8LSBjYmluZCh0YWJsYSwgc3kpXG4gIHN5IDwtIHNxcnQoc3VtKHN5KS9ucm93KHRhYmxhKSlcbiAgXG4gXG4gICMgQ29ycmVsYWNpb24gXG4gIFxuICBjb3JyZWxhY2lvbiA8LSBhcy5kb3VibGUoc3h5KS8oc3gqc3kpXG4gIFxuICAjIERhdG9zIGRlIHJldG9ybm9cbiAgXG4gIGxpc3RhIDwtIGxpc3Qoc3gsc3ksY29ycmVsYWNpb24sIHRhYmxhKVxuICBcbiAgbmFtZXMobGlzdGEpIDwtIGMoXCJTeFwiLFwiU3lcIixcImNvclwiLFwidGFibGFDb3JyZWxhY2lvbmVzXCIpXG4gIFxuICByZXR1cm4obGlzdGEpXG4gIFxuICBcbn1cbmBgYCJ9 -->
+<pre class="r"><code>
+correlacionPoblacional&lt;- function(x,y,sxy){
+  
+  # Construccion de Tabla
+  
+  tabla &lt;- cbind(x,y)
+  
+  # Desviacion estandar de x
+  
+  sx &lt;- (x-mean(x))^2
+  tabla &lt;- cbind(tabla, sx)
+  sx &lt;- sqrt(sum(sx)/nrow(tabla))
+  
+  # Desviacion estandar de y
+  
+  sy &lt;- (y-mean(y))^2
+  tabla &lt;- cbind(tabla, sy)
+  sy &lt;- sqrt(sum(sy)/nrow(tabla))
+  
+ 
+  # Correlacion 
+  
+  correlacion &lt;- as.double(sxy)/(sx*sy)
+  
+  # Datos de retorno
+  
+  lista &lt;- list(sx,sy,correlacion, tabla)
+  
+  names(lista) &lt;- c(&quot;Sx&quot;,&quot;Sy&quot;,&quot;cor&quot;,&quot;tablaCorrelaciones&quot;)
+  
+  return(lista)
+  
+  
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5jb3JyZWxhY2lvbiA8LSBjb3JyZWxhY2lvblBvYmxhY2lvbmFsKFBvcnBvcmNpw7NuLFJlbnRhLCBjb3ZhcmlhbnphWzFdKTtjb3JyZWxhY2lvblxuYGBgIn0= -->
+<pre class="r"><code>
+correlacion &lt;- correlacionPoblacional(Porporción,Renta, covarianza[1]);correlacion</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJFN4XG5bMV0gNy4yMjU2NDlcblxuJFN5XG5bMV0gNi40NjgzODVcblxuJGNvclxuWzFdIC0wLjk1MzgyMjFcblxuJHRhYmxhQ29ycmVsYWNpb25lc1xuICAgICAgIHggIHkgICAgIHN4ICAgICBzeVxuIFsxLF0gMjIgMzAgMTA2LjA5IDEwOC4xNlxuIFsyLF0gMjQgMzAgIDY4Ljg5IDEwOC4xNlxuIFszLF0gMjUgMjIgIDUzLjI5ICAgNS43NlxuIFs0LF0gMjggMjMgIDE4LjQ5ICAxMS41NlxuIFs1LF0gMzAgMTkgICA1LjI5ICAgMC4zNlxuIFs2LF0gMzMgMjAgICAwLjQ5ICAgMC4xNlxuIFs3LF0gMzcgMTUgIDIyLjA5ICAyMS4xNlxuIFs4LF0gNDAgMTQgIDU5LjI5ICAzMS4zNlxuIFs5LF0gNDIgMTEgIDk0LjA5ICA3My45NlxuWzEwLF0gNDIgMTIgIDk0LjA5ICA1Ny43NlxuIn0= -->
+<pre><code>$Sx
+[1] 7.225649
+
+$Sy
+[1] 6.468385
+
+$cor
+[1] -0.9538221
+
+$tablaCorrelaciones
+       x  y     sx     sy
+ [1,] 22 30 106.09 108.16
+ [2,] 24 30  68.89 108.16
+ [3,] 25 22  53.29   5.76
+ [4,] 28 23  18.49  11.56
+ [5,] 30 19   5.29   0.36
+ [6,] 33 20   0.49   0.16
+ [7,] 37 15  22.09  21.16
+ [8,] 40 14  59.29  31.36
+ [9,] 42 11  94.09  73.96
+[10,] 42 12  94.09  57.76</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Funcion del calculo del Coeficiente de spearman</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5zcGVhcm1hbiA8LSBmdW5jdGlvbih4LHkpe1xuICBcbiBcbiAgXG4gICMgUih4KVxuICBcbiAgUnggPC0gb3JkZXIoeClcbiAgdGFibGEgPC0gY2JpbmQoeCxSeClcbiAgXG4gICMgQ29uc3RydWN0aW9uIGRlIGxhIHRhYmxhXG4gIFxuICB0YWJsYSA8LSBjYmluZCggdGFibGEgLCB5KVxuICBcbiAgI1IoeSlcbiAgXG4gIFJ5IDwtIG9yZGVyKHkpXG4gIHRhYmxhIDwtIGNiaW5kKHRhYmxhLCBSeSlcbiAgXG4gICMgZFxuICBcbiAgZCA8LSBSeCAtIFJ5XG4gIHRhYmxhIDwtIGNiaW5kKHRhYmxhLCBkKVxuICBcbiAgIyBkMlxuICBcbiAgZDIgPC0gZF4yXG4gIHRhYmxhIDwtIGNiaW5kKHRhYmxhLGQyKVxuICBcblxuICAjIFJcbiAgXG4gIG4gPC0gbnJvdyh0YWJsYSlcbiAgUiA8LSBuICooKG5eMiktMSlcbiAgUiA8LSAoNipzdW0oZDIpKS9SXG4gIFIgPC0gMSAtIFJcbiAgXG4gIFxuICAjIFZhbG9yZXMgZGUgcmV0b3Jub1xuICBcbiAgbGlzdGEgPC0gbGlzdChSLCB0YWJsYSlcbiAgbmFtZXMobGlzdGEpIDwtIGMoXCJSXCIsIFwiVGFibGFTcGVhcm1hblwiKVxuICBcbiAgXG4gIHJldHVybihsaXN0YSlcbiAgXG59XG5cbmBgYCJ9 -->
+<pre class="r"><code>
+spearman &lt;- function(x,y){
+  
+ 
+  
+  # R(x)
+  
+  Rx &lt;- order(x)
+  tabla &lt;- cbind(x,Rx)
+  
+  # Construction de la tabla
+  
+  tabla &lt;- cbind( tabla , y)
+  
+  #R(y)
+  
+  Ry &lt;- order(y)
+  tabla &lt;- cbind(tabla, Ry)
+  
+  # d
+  
+  d &lt;- Rx - Ry
+  tabla &lt;- cbind(tabla, d)
+  
+  # d2
+  
+  d2 &lt;- d^2
+  tabla &lt;- cbind(tabla,d2)
+  
+
+  # R
+  
+  n &lt;- nrow(tabla)
+  R &lt;- n *((n^2)-1)
+  R &lt;- (6*sum(d2))/R
+  R &lt;- 1 - R
+  
+  
+  # Valores de retorno
+  
+  lista &lt;- list(R, tabla)
+  names(lista) &lt;- c(&quot;R&quot;, &quot;TablaSpearman&quot;)
+  
+  
+  return(lista)
+  
+}
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29lZmljaWVudGVTcGVhcm1hbiA8LSBzcGVhcm1hbihQb3Jwb3JjacOzbiwgUmVudGEpO2NvZWZpY2llbnRlU3BlYXJtYW5cbmBgYCJ9 -->
+<pre class="r"><code>coeficienteSpearman &lt;- spearman(Porporción, Renta);coeficienteSpearman</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJFJcblsxXSAtMC45NTE1MTUyXG5cbiRUYWJsYVNwZWFybWFuXG4gICAgICAgeCBSeCAgeSBSeSAgZCBkMlxuIFsxLF0gMjIgIDEgMzAgIDkgLTggNjRcbiBbMixdIDI0ICAyIDMwIDEwIC04IDY0XG4gWzMsXSAyNSAgMyAyMiAgOCAtNSAyNVxuIFs0LF0gMjggIDQgMjMgIDcgLTMgIDlcbiBbNSxdIDMwICA1IDE5ICA1ICAwICAwXG4gWzYsXSAzMyAgNiAyMCAgNiAgMCAgMFxuIFs3LF0gMzcgIDcgMTUgIDMgIDQgMTZcbiBbOCxdIDQwICA4IDE0ICA0ICA0IDE2XG4gWzksXSA0MiAgOSAxMSAgMSAgOCA2NFxuWzEwLF0gNDIgMTAgMTIgIDIgIDggNjRcbiJ9 -->
+<pre><code>$R
+[1] -0.9515152
+
+$TablaSpearman
+       x Rx  y Ry  d d2
+ [1,] 22  1 30  9 -8 64
+ [2,] 24  2 30 10 -8 64
+ [3,] 25  3 22  8 -5 25
+ [4,] 28  4 23  7 -3  9
+ [5,] 30  5 19  5  0  0
+ [6,] 33  6 20  6  0  0
+ [7,] 37  7 15  3  4 16
+ [8,] 40  8 14  4  4 16
+ [9,] 42  9 11  1  8 64
+[10,] 42 10 12  2  8 64</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Porporcion vs Renta</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5wbG90KFBvcnBvcmNpw7NuLFJlbnRhLCBtYWluPVwiIFBvcnBvcmNpw7NuIHZzIFJlbnRhXCIpXG5hYmxpbmUobG0oUmVudGEgfiBQb3Jwb3JjacOzbiksIGNvbD1cImJsdWVcIilcblxuYGBgIn0= -->
+<pre class="r"><code>
+plot(Porporción,Renta, main=&quot; Porporción vs Renta&quot;)
+abline(lm(Renta ~ Porporción), col=&quot;blue&quot;)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-plot-begin eyJoZWlnaHQiOjQzMi42MzI5LCJ3aWR0aCI6NzAwLCJzaXplX2JlaGF2aW9yIjowLCJjb25kaXRpb25zIjpbXX0= -->
+<p><img src="data:image/png;base64,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" /></p>
+<!-- rnb-plot-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlB1bnRvIDUgLSBUYWxsZXIgMSINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQojIyMjIFB1bnRvIDQNCg0KRGVmaW5pY2lvbiBkZSBsYXMgdmFyaWFibGVzDQoNCmBgYHtyfQ0KDQpQb3Jwb3JjacOzbiA8LSBjKDIyLCAyNCwgMjUsIDI4LCAzMCwgMzMsIDM3LCA0MCwgNDIsIDQyKQ0KDQpSZW50YSA8LSBjKCAzMCwgMzAsIDIyLCAyMywgMTksIDIwLCAxNSwgMTQsIDExLCAxMikNCg0KYGBgDQoNCiMjIyMgQ2FsY3VsbyBkZSBsYSBjb3ZhcmlhbnphDQoNCmBgYHtyfQ0KDQp0YWJsYSA8LSBjYmluZChQb3Jwb3JjacOzbiwgUmVudGEpO2RhdG9zDQoNCmBgYA0KDQoNCnByb21lZGlvcyBkZSB4IHkgeQ0KYGBge3J9DQoNCnByb21lZGlvcyA8LSBjb2xNZWFucyh0YWJsYSk7cHJvbWVkaW9zDQoNCg0KYGBgDQoNCngqeQ0KDQpgYGB7cn0NCg0KdGFibGEgPC0gY2JpbmQodGFibGEsIHRhYmxhWywxXSp0YWJsYVssMl0pDQpjb2xuYW1lcyh0YWJsYSlbM10gPC0gIngqeSINCnRhYmxhDQpgYGANCg0KDQpNdWx0aXBsaWNhY2lvbiBkZSBwcm9uZWRpb3MgKHgnKnknKQ0KYGBge3J9DQoNCnByb21feHkgPSBwcm9tZWRpb3NbMV0qcHJvbWVkaW9zWzJdO3h5DQoNCmBgYA0KeCp5IC0geCd5Jw0KDQpgYGB7cn0NCg0KdGFibGEgPC0gY2JpbmQodGFibGEsIHRhYmxhWywzXS1wcm9tX3h5KQ0KY29sbmFtZXModGFibGEpWzRdIDwtICIoeCp5IC0geCd5JykiDQp0YWJsYQ0KYGBgDQpgYGB7cn0NCmNvdmFyaWFuemEgPC0gKHN1bSh0YWJsYVssNF0pL25yb3codGFibGEpKQ0KYGBgDQoNCg0KYGBge3J9DQoNCmNvdmFyaWFuemFQb2JsYWNpb25hbCA8LSBmdW5jdGlvbih4LHkpew0KICANCiAgdGFibGEgPC0gY2JpbmQoeCwgeSk7DQogIA0KfQ0KDQpgYGANCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlB1bnRvIDUgLSBUYWxsZXIgMSINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQojIyMjIFB1bnRvIDUNCg0KRGVmaW5pY2lvbiBkZSBsYXMgdmFyaWFibGVzDQoNCmBgYHtyfQ0KDQpQb3Jwb3JjacOzbiA8LSBjKDIyLCAyNCwgMjUsIDI4LCAzMCwgMzMsIDM3LCA0MCwgNDIsIDQyKQ0KDQpSZW50YSA8LSBjKCAzMCwgMzAsIDIyLCAyMywgMTksIDIwLCAxNSwgMTQsIDExLCAxMikNCg0KYGBgDQoNCkZ1bmNpb24gZGVsIGNhbGN1bG8gZGUgbGEgY292YXJpYW56YSBQb2JsYWNpb25hbA0KDQpgYGB7cn0NCg0KY292YXJpYW56YVBvYmxhY2lvbmFsIDwtIGZ1bmN0aW9uKHgseSl7DQogIA0KICAjIGNvbnRydWNjaW9uIGRlIGxhIHRhYmxhDQogIA0KICB0YWJsYSA8LSBjYmluZCh4LCB5KTsNCiAgDQogICMgUHJvbWVkaW9zIGRlIGxhIHRhYmxhDQogIHByb21lZGlvcyA8LSBjb2xNZWFucyh0YWJsYSk7DQogIA0KICAjIHgqeQ0KICANCiAgdGFibGEgPC0gY2JpbmQodGFibGEsIHRhYmxhWywxXSp0YWJsYVssMl0pDQogIGNvbG5hbWVzKHRhYmxhKVszXSA8LSAieCp5Ig0KICANCiAgI3gneScNCiAgDQogIHByb21feHkgPC0gcHJvbWVkaW9zWzFdKnByb21lZGlvc1syXQ0KICB0YWJsYSA8LSBjYmluZCh0YWJsYSwgdGFibGFbLDNdLXByb21feHkpDQogIA0KICAjKHgqeSAtIHgneScpDQogIA0KICBjb2xuYW1lcyh0YWJsYSlbNF0gPC0gIih4KnkgLSB4J3knKSINCiAgDQogICMgY292YXJpYW56YQ0KICBjb3ZhcmlhbnphIDwtIChzdW0odGFibGFbLDRdKS9ucm93KHRhYmxhKSkNCiAgDQogICMgRGF0b3MgZGUgcmV0b3Jubw0KICANCiAgbGlzdGEgPC0gbGlzdChjb3ZhcmlhbnphLCB0YWJsYSkNCiAgbmFtZXMobGlzdGEpIDwtIGMoIlN4eSIsInRhYmxhQ292YXJpYW56YSIpDQogIA0KICByZXR1cm4gKGxpc3RhKQ0KICANCn0NCg0KYGBgDQoNCmBgYHtyfQ0KDQpjb3ZhcmlhbnphIDwtIGNvdmFyaWFuemFQb2JsYWNpb25hbChQb3Jwb3JjacOzbiwgUmVudGEpO2NvdmFyaWFuemENCg0KYGBgDQoNCkZ1bmNpb24gZGVsIGNhbGN1bG8gZGUgbGEgQ29ycmVsYWNpb24gUG9ibGFjaW9uYWwNCg0KDQpgYGB7cn0NCg0KY29ycmVsYWNpb25Qb2JsYWNpb25hbDwtIGZ1bmN0aW9uKHgseSxzeHkpew0KICANCiAgIyBDb25zdHJ1Y2Npb24gZGUgVGFibGENCiAgDQogIHRhYmxhIDwtIGNiaW5kKHgseSkNCiAgDQogICMgRGVzdmlhY2lvbiBlc3RhbmRhciBkZSB4DQogIA0KICBzeCA8LSAoeC1tZWFuKHgpKV4yDQogIHRhYmxhIDwtIGNiaW5kKHRhYmxhLCBzeCkNCiAgc3ggPC0gc3FydChzdW0oc3gpL25yb3codGFibGEpKQ0KICANCiAgIyBEZXN2aWFjaW9uIGVzdGFuZGFyIGRlIHkNCiAgDQogIHN5IDwtICh5LW1lYW4oeSkpXjINCiAgdGFibGEgPC0gY2JpbmQodGFibGEsIHN5KQ0KICBzeSA8LSBzcXJ0KHN1bShzeSkvbnJvdyh0YWJsYSkpDQogIA0KIA0KICAjIENvcnJlbGFjaW9uIA0KICANCiAgY29ycmVsYWNpb24gPC0gYXMuZG91YmxlKHN4eSkvKHN4KnN5KQ0KICANCiAgIyBEYXRvcyBkZSByZXRvcm5vDQogIA0KICBsaXN0YSA8LSBsaXN0KHN4LHN5LGNvcnJlbGFjaW9uLCB0YWJsYSkNCiAgDQogIG5hbWVzKGxpc3RhKSA8LSBjKCJTeCIsIlN5IiwiY29yIiwidGFibGFDb3JyZWxhY2lvbmVzIikNCiAgDQogIHJldHVybihsaXN0YSkNCiAgDQogIA0KfQ0KYGBgDQoNCg0KYGBge3J9DQoNCmNvcnJlbGFjaW9uIDwtIGNvcnJlbGFjaW9uUG9ibGFjaW9uYWwoUG9ycG9yY2nDs24sUmVudGEsIGNvdmFyaWFuemFbMV0pO2NvcnJlbGFjaW9uDQoNCmBgYA0KRnVuY2lvbiBkZWwgY2FsY3VsbyBkZWwgQ29lZmljaWVudGUgZGUgIHNwZWFybWFuDQoNCmBgYHtyfQ0KDQpzcGVhcm1hbiA8LSBmdW5jdGlvbih4LHkpew0KICANCiANCiAgDQogICMgUih4KQ0KICANCiAgUnggPC0gb3JkZXIoeCkNCiAgdGFibGEgPC0gY2JpbmQoeCxSeCkNCiAgDQogICMgQ29uc3RydWN0aW9uIGRlIGxhIHRhYmxhDQogIA0KICB0YWJsYSA8LSBjYmluZCggdGFibGEgLCB5KQ0KICANCiAgI1IoeSkNCiAgDQogIFJ5IDwtIG9yZGVyKHkpDQogIHRhYmxhIDwtIGNiaW5kKHRhYmxhLCBSeSkNCiAgDQogICMgZA0KICANCiAgZCA8LSBSeCAtIFJ5DQogIHRhYmxhIDwtIGNiaW5kKHRhYmxhLCBkKQ0KICANCiAgIyBkMg0KICANCiAgZDIgPC0gZF4yDQogIHRhYmxhIDwtIGNiaW5kKHRhYmxhLGQyKQ0KICANCg0KICAjIFINCiAgDQogIG4gPC0gbnJvdyh0YWJsYSkNCiAgUiA8LSBuICooKG5eMiktMSkNCiAgUiA8LSAoNipzdW0oZDIpKS9SDQogIFIgPC0gMSAtIFINCiAgDQogIA0KICAjIFZhbG9yZXMgZGUgcmV0b3Jubw0KICANCiAgbGlzdGEgPC0gbGlzdChSLCB0YWJsYSkNCiAgbmFtZXMobGlzdGEpIDwtIGMoIlIiLCAiVGFibGFTcGVhcm1hbiIpDQogIA0KICANCiAgcmV0dXJuKGxpc3RhKQ0KICANCn0NCg0KYGBgDQoNCmBgYHtyfQ0KY29lZmljaWVudGVTcGVhcm1hbiA8LSBzcGVhcm1hbihQb3Jwb3JjacOzbiwgUmVudGEpO2NvZWZpY2llbnRlU3BlYXJtYW4NCg0KYGBgDQpQb3Jwb3JjaW9uIHZzIFJlbnRhDQoNCmBgYHtyfQ0KDQpwbG90KFBvcnBvcmNpw7NuLFJlbnRhLCBtYWluPSIgUG9ycG9yY2nDs24gdnMgUmVudGEiKQ0KYWJsaW5lKGxtKFJlbnRhIH4gUG9ycG9yY2nDs24pLCBjb2w9ImJsdWUiKQ0KDQpgYGANCiANCiA=</div>
 
 
 
