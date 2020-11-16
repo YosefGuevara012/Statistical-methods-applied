@@ -1,0 +1,178 @@
+---
+title: "Punto 3"
+output: html_notebook
+---
+
+
+##### Punto 3
+
+
+Se cargan los archivo necesarios
+
+```{r}
+Bodyfat <- read.csv("C:/Users/yosef/OneDrive/Documents/Esp_Estadistica/Metodos Estadisticos Aplicados/Taller_1/Bodyfat.csv", header=T,sep=";")
+head(Bodyfat)
+
+```
+
+Se limpia el Dataframe eliminando los datos de  la columna Density
+
+
+```{r}
+Bodyfat <- Bodyfat[,-1]
+head(Bodyfat)
+attach(Bodyfat)
+
+```
+
+Se selecciona la variable Bicep
+
+```{r}
+
+head(Bicep)
+
+```
+
+Separacion de la varibles por grupo
+
+Se carga la libreria dplyr
+```{r}
+
+library(dplyr)
+
+```
+
+Personas con menos de 31 años
+
+```{r}
+
+menores30 <- Bodyfat %>%
+  filter(Age <= 30)
+
+menores30 <- menores30$Bicep;menores30
+
+```
+Personas Entre 31 y 50 años
+
+```{r}
+
+entre31y50 <- Bodyfat %>%
+  filter(Age >=31 & Age <= 50)
+
+
+entre31y50 <- entre31y50$Bicep;entre31y50
+
+
+```
+Personas Mayores de 50
+
+
+```{r}
+
+
+mayores50 <- Bodyfat %>%
+  filter(Age > 50)
+
+mayores50 <- mayores50$Bicep;mayores50
+```
+Creacion de la funcion para el calculo de los valores numericos
+
+
+
+```{r}
+
+valoresNumericos <- function(x){
+  
+  n <- length(x)
+    
+  # Media
+  
+  media <- mean(x)
+  
+  # Mediana
+  
+  mediana <- median(x)
+  
+  # Moda
+  
+  moda <- sort(table(x),decreasing = T)
+  moda <- as.numeric(names(moda[1]))
+  
+  
+  # Varianza
+  
+  varianza <- sum((x-media)^2)/n
+  
+  # Desviacion estandar
+  
+  std <- sqrt(varianza)
+  
+  
+  # MEDA
+  
+  MEDA <- median(x - mediana)
+
+  # Rango
+    
+  rango <- max(x)-min(x)
+  
+  # Cuantiles
+  
+  cuantiles <- quantile(x)
+  
+  # QL
+  
+  QL <- cuantiles[2]
+  
+  # Qc
+  
+  QC <- cuantiles[3]
+  
+  # Qu
+  
+  Qu <- cuantiles[4]
+  
+  # IQR
+  
+  IQR <- Qu - QL
+    
+  # Coeficiente asimetria
+  
+  CA <- sum((x-media)^3)/(n*std^3)
+  
+  # coeficiente de curtosis
+  
+  CK <- sum((x-media)^4)/(n*std^4)
+  
+  # Valores de retorno
+  
+  tabla <- rbind(media,mediana,moda,varianza,std, MEDA, rango, QL, QC, Qu, IQR, CA, CK)
+  colnames(tabla)[1] <- "Valor"
+
+  return ( tabla)
+}
+
+```
+
+Analisis numerico para los menores de 30 años
+```{r}
+
+analisisMenores30 <- valoresNumericos(menores30); analisisMenores30
+
+```
+analisis entre 31 y 50
+```{r}
+
+analisis31y50 <- valoresNumericos(entre31y50); analisis31y50
+
+```
+
+Anilsis de mayores de 50
+
+
+```{r}
+analisisMayores50 <- valoresNumericos(mayores50);analisisMayores50
+
+
+```
+ 
