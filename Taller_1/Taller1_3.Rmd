@@ -157,13 +157,13 @@ valoresNumericos <- function(x){
 Analisis numerico para los menores de 30 años
 ```{r}
 
-analisisMenores30 <- valoresNumericos(menores30); analisisMenores30
+analisisMenores30 <- valoresNumericos(menores30); round(analisisMenores30,3)
 
 ```
 analisis entre 31 y 50
 ```{r}
 
-analisis31y50 <- valoresNumericos(entre31y50); analisis31y50
+analisis31y50 <- valoresNumericos(entre31y50); round(analisis31y50,3)
 
 ```
 
@@ -171,8 +171,60 @@ Anilsis de mayores de 50
 
 
 ```{r}
-analisisMayores50 <- valoresNumericos(mayores50);analisisMayores50
+analisisMayores50 <- valoresNumericos(mayores50);round(analisisMayores50,3)
 
 
 ```
  
+```{r}
+graficos <- function(x,title){
+  
+  cajas <- boxplot(x, main = paste("Boxplot ", title ), xlab = title)
+  
+  # Las clases del histograma estan dadas por n, siendo n el numero de observaciones,
+  
+  clases <- round(sqrt(length(x)),1)
+  
+  if (clases > 20){
+    
+    clases <- 20
+    
+  }else if (clases < 5){
+    
+    clases <- 5
+    
+  }else{
+    
+    clases <- clases
+    
+  }
+  
+  histograma <- hist(x, main = paste("Histograma ", title ), nclass = clases ,xlab = title, ylab = c("Frecuencia"))
+ 
+}
+
+```
+
+
+```{r}
+
+graficos(menores30, "menores de 30")
+
+```
+
+
+```{r}
+
+graficos(entre31y50, "entre 31 y 50")
+
+```
+
+
+```{r}
+
+graficos(mayores50, "mayores 50")
+
+```
+
+```
+
