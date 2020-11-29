@@ -1,0 +1,178 @@
+---
+title: "Ejercicio 1 taller 2 - MEA"
+output: pdf_document
+---
+
+#### EJERCICIO UNO. 
+
+En un estudio sobre la afectividad de los estudiantes universitarios se pregunta a 25 personas sobre el número de personas del sexo opuesto con el que ha mantenido relaciones afectivas durante los tres últimos años. Se obtuvieron los resultados.
+
+1 0 2 0 3 3 1 5 1 2 0 0 1 0 4 2 1 0 6 2 1 1 2 1 8
+
+Se pide construir un IC del 95% para la media y la desviación estándar utilizando el método autosuficiente. (Presentar el código o programa computacional de implementación).
+
+
+
+
+```{r}
+
+# Se crea el vector de datos de afectividad.
+
+afectividad <- c(1, 0, 2, 0, 3, 3, 1, 5, 1, 2, 0, 0, 1, 0, 4, 2, 1, 0, 6, 2, 1, 1, 2, 1, 8)
+
+# Se imprime el vector de afectividad.
+
+afectividad
+```
+
+```{r}
+
+# Se contruye una función para realizar el bootstrap
+
+Bootstrap <- function(muestra, B , alpha  = 0.05){
+  
+
+  # Se crean 2  vectores vacios para almacenar los calculos las estimaciones B bootstrap
+  
+  
+  btp_Media <- c() # Vector de medias
+  
+   
+  btp_S <- c() # Vector de desviaciones estándar 
+
+  # El siguiente ciclo for generara "B" el cálculo de la Media y la desviación estándar
+  # Mediante muestreo con reemplazamiento
+  
+  for (i in 1:B){
+    
+  btp_Media [i] <- mean(sample(muestra,replace = T))
+  btp_S [i] <- sd(sample(muestra,replace = T))
+
+  }
+  
+# Las siguientes graficas muestran la Dispersión de las B estimaciones de la Media y la desviación estándar
+  
+  par(mfrow=c(1,2), cex.main=0.8, cex.lab=0.8)
+  hist(btp_Media, main = "Dist. Bootstrap Media", ylab = "Frecuencia", xlab = "Bootstrap Media")
+  hist(btp_S, main = "Dist. Bootstrap Desv. Estandar", ylab = "Frecuencia", xlab = "Bootstrap Desv. Estandar")
+  
+  # Se calcula las varianzas de las Medias y de las desviaciones estándar de las B estimaciones
+  
+  var_btp_Media <- var(btp_Media)
+  var_btp_S <- var(btp_S)
+
+  
+  # Construccion del intervalo de confianza Bilateral
+  
+  # Se definen los intevalos de confianza mediante el valor alpha = 0.05
+  # (Theta_inf < µ < Theta_sup)
+  
+  inf <- B * (alpha/2)
+  sup <- B * (1 - alpha/2)
+  
+  # Se ordena el vector de las B estimaciones de las medias
+  
+  orden_Btr_media<- sort(btp_Media, decreasing = F)
+  
+  # Se obtienen los valores de los extremos del intervalo de las medias
+  
+  Theta_inf_media <- orden_Btr_media[inf]
+  Theta_sup_media <- orden_Btr_media[sup]
+  
+  # Se ordena el vector de las B estimaciones de las desviaciones estándar
+  
+  orden_Btr_S <- sort(btp_S, decreasing = F)
+  
+  # Se obtienen los valores de los extremos de las desviaciones estándar
+  
+  
+  Theta_inf_S <- orden_Btr_S[inf]
+  Theta_sup_S <- orden_Btr_S[sup]
+  
+  # Se genera una tabla con todos los valores calculados
+  
+  tabla <- cbind(var_btp_Media,Theta_inf_media,Theta_sup_media,var_btp_S,Theta_inf_S ,Theta_sup_S)
+  
+  # Se redondea los valores de la tabla a 3 cifras significativas 
+  
+  tabla <- round(tabla, 3)
+  
+  # Se retornan los valores de la Tabla
+  
+  return(tabla)
+  
+  
+}
+
+
+
+```
+
+
+
+
+```{r}
+
+B <-  1000
+B_mil <- Bootstrap(afectividad,B)
+```
+
+
+```{r}
+
+B = 10000
+B_10mil <- Bootstrap(afectividad,B)
+
+```
+
+
+```{r}
+B = 20000
+B_20mil <- Bootstrap(afectividad,B)
+```
+
+
+
+```{r}
+B = 50000
+B_50mil <- Bootstrap(afectividad,B)
+```
+
+```{r}
+# Construccion de la tabla comparativa de varianzas para los diferentes B
+
+tabla <- rbind(B_mil[c(1,4)], B_10mil[c(1,4)], B_20mil[c(1,4)], B_50mil[c(1,4)])
+colnames(tabla) <- c("Var. Media","Var. S")
+rownames(tabla) <- c("B = 1000", "B = 10000", "B = 20000", "B = 50000")
+tabla
+
+```
+
+
+```{r}
+
+# Construccion de la tabla comparativa
+
+tabla <- cbind(B_20mil[1], B_20mil[2], B_20mil[3])
+colnames(tabla) <- c("Var. Media", "Media_Thetha_inf", "Media_Thetha_sup")
+rownames(tabla) <- c("B = 20000")
+tabla
+
+```
+
+
+```{r}
+tabla <- cbind(B_20mil[4], B_20mil[5], B_20mil[6])
+colnames(tabla) <- c("Var. S", "SD_Thetha_inf", "SD_Thetha_sup")
+rownames(tabla) <- c("B = 20000")
+tabla
+```
+
+
+```{r}
+tabla <- rbind(B_mil,B_10mil,B_20mil, B_50mil)
+colnames(tabla) <- c("Var. Media", "Var_Thetha_inf", "Var_Thetha_sup","Var. S", "Var_Thetha_inf", "Var_Thetha_sup")
+rownames(tabla) <- c("B = 1000", "B = 10000","B = 20000", "B = 50000")
+tabla
+```
+
